@@ -128,34 +128,7 @@ export function exportPlanAsMarkdown(state: AppState): string {
         lines.push('');
     }
 
-    // Market Validation
-    if (s.marketValidation) {
-        const v = s.marketValidation;
-        lines.push('## 3. Market Validation');
-        lines.push('');
-        lines.push(`**Verdict: ${v.verdict.toUpperCase()}**`);
-        lines.push('');
-        lines.push(`> ${v.verdictSummary}`);
-        lines.push('');
-        lines.push(`- **TAM:** ${v.marketSize.tam}`);
-        lines.push(`- **SAM:** ${v.marketSize.sam}`);
-        lines.push(`- **Revenue Cap:** ${v.marketSize.revenueCap}`);
-        lines.push('');
-        lines.push('**Competitors:**');
-        v.competitors.forEach(c => lines.push(`- ${c.name} (${c.score}): ${c.detail}`));
-        lines.push('');
-        lines.push('**Demand Signals:**');
-        v.demandSignals.forEach(d => lines.push(`- ${d}`));
-        lines.push('');
-        lines.push('**Validation Tests:**');
-        v.validationTests.forEach(t => lines.push(`- ${t.test} → ${t.passFail}`));
-        lines.push('');
-        lines.push('**Risks:**');
-        v.risks.forEach(r => lines.push(`- ${r}`));
-        lines.push('');
-    }
 
-    // Revenue Projection
     if (s.revenueProjection) {
         const r = s.revenueProjection;
         lines.push('## 4. Revenue Projection');
@@ -251,7 +224,6 @@ export function exportPlanAsJSON(state: AppState): string {
         generator: 'CoachSharkTank',
         selectedNiche: state.selectedNiche,
         businessModel: state.businessModel,
-        marketValidation: state.marketValidation,
         revenueProjection: state.revenueProjection,
         messagingData: state.messagingData,
         launchPlan: state.launchPlan,
